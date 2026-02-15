@@ -21,19 +21,21 @@ from .losses import _DeblurFFTLoss, _DeblurSSIMLoss, _DeblurTVLoss
 from .model import DeblurINRModel
 
 
-def _build_pixel_skip_pyramid(image: Tensor) -> dict[float, Tensor]:
+def _build_pixel_skip_pyramid(image: Tensor, spatial_dims: int = 2) -> dict[float, Tensor]:
     """Build multi-scale pyramid using pixel-skipping (NOT interpolation).
 
     This matches the reference Deblur-INR implementation which uses strided
     pixel selection rather than bilinear downsampling.
 
-    :param image: Input image (B, C, H, W)
+    :param image: Input image (B, C, H, W) for 2D or (B, C, D, H, W) for 3D
+    :param spatial_dims: Number of spatial dimensions (2 or 3)
     :returns: Pyramid {1.0: original, 0.5: half, 0.25: quarter}
     """
     pyramid = {1.0: image}
     current = image
+    skip = (slice(None, None, 2),) * spatial_dims
     for scale in [0.5, 0.25]:
-        current = current[..., ::2, ::2]
+        current = current[(..., *skip)]
         pyramid[scale] = current
     return pyramid
 
@@ -158,7 +160,7 @@ class DeblurINROptimizer:
         spatial_sizes = blurred_image.shape[2:]  # (H, W) or (D, H, W)
 
         # Build image pyramid using pixel-skipping
-        pyramid = _build_pixel_skip_pyramid(blurred_image)
+        pyramid = _build_pixel_skip_pyramid(blurred_image, self.spatial_dims)
 
         # Create model
         model = DeblurINRModel(config=self.config).to(self.device)

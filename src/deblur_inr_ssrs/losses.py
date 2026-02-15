@@ -5,7 +5,7 @@ They auto-detect 2D (4D tensor) vs 3D (5D tensor) inputs and have minimal
 constructor parameters. Not exported or registered — used only by
 DeblurINROptimizer.
 
-For general-purpose registered losses, use infrastructure.training.losses.
+These are internal to the deblur optimization loop and not part of the public API.
 """
 
 from __future__ import annotations
@@ -74,7 +74,7 @@ class _DeblurFFTLoss(nn.Module):
     """FFT loss with normalization for deblur pipeline.
 
     Uses rfftn (real FFT) with optional magnitude normalization.
-    Different algorithm from infrastructure FFTLoss which uses fft2 + frequency masking.
+    Uses rfftn over all spatial dims, unlike fft2 + frequency masking approaches.
     """
 
     def __init__(self, normalize: bool = True):
