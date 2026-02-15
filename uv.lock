@@ -69,7 +69,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.0.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.2" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.3.0" },
-    { name = "ssres-toolbox", editable = "../ssrs_toolbox" },
+    { name = "ssres-toolbox", editable = "../ssres_toolbox" },
     { name = "torch", specifier = ">=2.7.0", index = "https://download.pytorch.org/whl/cu128" },
     { name = "tqdm", specifier = ">=4.66.2" },
 ]
@@ -513,7 +513,7 @@ wheels = [
 [[package]]
 name = "ssres-toolbox"
 version = "0.1.0"
-source = { editable = "../ssrs_toolbox" }
+source = { editable = "../ssres_toolbox" }
 dependencies = [
     { name = "torch" },
 ]

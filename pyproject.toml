@@ -40,7 +40,7 @@ name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
 
 [tool.uv.sources]
-ssres-toolbox = {path = "../ssrs_toolbox", editable = true}
+ssres-toolbox = {path = "../ssres_toolbox", editable = true}
 torch = [{index = "pytorch-cu128"}]
 
 [tool.hatch.build.targets.wheel]
