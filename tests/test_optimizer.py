@@ -58,6 +58,30 @@ class TestDeblurINROptimizer:
         image, _kernel = optimizer.deblur(blurred, show_progress=False)
         assert image.shape == (1, 1, 32, 32)
 
+    def test_deblur_3d_output_shapes(self):
+        config = DeblurINRConfig(
+            spatial_dims=3,
+            kernel_size=8,
+            num_iterations=5,
+            hidden_features=16,
+            hidden_layers=1,
+            skip_channels=[16, 16],
+            num_frequencies=4,
+            stages=[
+                OptimizationStage(
+                    start_iter=0, end_iter=5, scale=1.0,
+                    optimize_kernel=True, optimize_image=True,
+                ),
+            ],
+        )
+        optimizer = DeblurINROptimizer(config, device="cpu")
+        # Use 16^3 so the SkipNetwork3D output (halved to ~12) still exceeds kernel=9
+        blurred = torch.rand(1, 1, 16, 16, 16)
+        image, kernel = optimizer.deblur(blurred, show_progress=False)
+        assert image.ndim == 5
+        assert image.shape[:2] == (1, 1)
+        assert kernel.ndim == 5
+
     def test_callbacks(self):
         config = _make_config()
         optimizer = DeblurINROptimizer(config, device="cpu")
@@ -69,3 +93,18 @@ class TestDeblurINROptimizer:
 
         optimizer.deblur(blurred, callbacks=[my_callback], show_progress=False)
         assert len(callback_calls) == config.num_iterations
+
+    def test_deblur_image_convenience(self):
+        from deblur_inr_ssrs import deblur_image
+
+        # 128x128 needed: default 5-level SkipNetwork requires spatial >= 2
+        # at the deepest level (128 * 0.25 scale = 32, padded ~34, after 5
+        # downsamples → min spatial = 2 which satisfies BatchNorm).
+        image, _kernel = deblur_image(
+            torch.rand(1, 1, 128, 128),
+            kernel_size=8,
+            num_iterations=3,
+            device="cpu",
+            show_progress=False,
+        )
+        assert image.shape == (1, 1, 128, 128)

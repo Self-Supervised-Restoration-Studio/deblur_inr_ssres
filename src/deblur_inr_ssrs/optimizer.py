@@ -10,8 +10,7 @@ if TYPE_CHECKING:
 
 import torch
 import torch.nn.functional as F
-from ssrs_toolbox import FourierFeatureEncoding
-from ssrs_toolbox.losses import SmoothnessLoss
+from ssrs_toolbox import FourierFeatureEncoding, SmoothnessLoss
 from torch import Tensor
 from torch.optim import Adam
 from torch.optim.lr_scheduler import MultiStepLR
@@ -233,7 +232,7 @@ class DeblurINROptimizer:
                 loss = loss + self.config.fft_weight * self.fft_loss(conv_result, target)
 
             if self.config.tv_weight > 0:
-                loss = loss + self.config.tv_weight * self.tv_loss(recon_image, None)
+                loss = loss + self.config.tv_weight * self.tv_loss(recon_image)
 
             if self.config.smoothness_weight > 0:
                 loss = loss + self.config.smoothness_weight * self.smoothness_loss(kernel)

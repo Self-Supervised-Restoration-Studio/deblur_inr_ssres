@@ -71,6 +71,23 @@ class TestDeblurINRModel:
         assert model.kernel_size == 16
         assert model.spatial_dims == 2
 
+    def test_3d_forward(self):
+        config = DeblurINRConfig(
+            spatial_dims=3,
+            kernel_size=8,
+            skip_channels=[16, 16],
+            hidden_features=16,
+            hidden_layers=1,
+            num_frequencies=4,
+        )
+        model = DeblurINRModel(config=config)
+        # fourier_input_depth = num_frequencies * 2 * spatial_dims = 4 * 2 * 3 = 24
+        x = torch.randn(1, 24, 8, 8, 8)
+        image, kernel = model(x, kernel_size=8)
+        assert image.ndim == 5
+        assert image.shape[:2] == (1, 1)
+        assert kernel.shape == (1, 1, 8, 8, 8)
+
     def test_direct_construction(self):
         model = DeblurINRModel(
             kernel_size=8,

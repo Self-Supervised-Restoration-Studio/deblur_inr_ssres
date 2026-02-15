@@ -31,6 +31,9 @@ dev = [
   "ruff>=0.3.0",
 ]
 
+[project.entry-points."ssrs.plugins"]
+deblur_inr = "deblur_inr_ssrs:register"
+
 [[tool.uv.index]]
 explicit = true
 name = "pytorch-cu128"

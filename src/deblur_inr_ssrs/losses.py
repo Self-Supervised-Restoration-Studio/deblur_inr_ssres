@@ -104,7 +104,7 @@ class _DeblurFFTLoss(nn.Module):
 class _DeblurTVLoss(nn.Module):
     """Total Variation loss for deblur pipeline. Auto-detects 2D/3D."""
 
-    def forward(self, pred: Tensor, target: Tensor | None = None) -> Tensor:
+    def forward(self, pred: Tensor) -> Tensor:
         if pred.ndim == 5:
             diff_d = pred[:, :, 1:, :, :] - pred[:, :, :-1, :, :]
             diff_h = pred[:, :, :, 1:, :] - pred[:, :, :, :-1, :]

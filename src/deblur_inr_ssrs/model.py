@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING
 
 import torch
 import torch.nn as nn
@@ -10,10 +10,10 @@ import torch.nn.functional as F
 from ssrs_toolbox import SIRENKernelEstimator, SkipNetwork, SkipNetwork3D
 from torch import Tensor
 
+from .config import SpatialDims
+
 if TYPE_CHECKING:
     from .config import DeblurINRConfig
-
-SpatialDims = Literal[2, 3]
 
 
 class DifferentiableCentralLayer(nn.Module):
