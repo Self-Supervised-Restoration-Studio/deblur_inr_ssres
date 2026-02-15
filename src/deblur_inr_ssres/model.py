@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from ssrs_toolbox import SIRENKernelEstimator, SkipNetwork, SkipNetwork3D
+from ssres_toolbox import SIRENKernelEstimator, SkipNetwork, SkipNetwork3D
 from torch import Tensor
 
 from .config import SpatialDims
@@ -117,7 +117,7 @@ class DifferentiableCentralLayer3D(nn.Module):
 class DeblurINRModel(nn.Module):
     """Combined Deblur-INR model with kernel estimation and image reconstruction.
 
-    Composes ssrs_toolbox.SIRENKernelEstimator + ssrs_toolbox.SkipNetwork for
+    Composes ssres_toolbox.SIRENKernelEstimator + ssres_toolbox.SkipNetwork for
     joint blind deconvolution. Uses differentiable kernel centering (F.grid_sample)
     so gradients flow through the centering operation during test-time optimization.
 

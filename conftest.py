@@ -1,4 +1,4 @@
-"""Test configuration for deblur_inr_ssrs."""
+"""Test configuration for deblur_inr_ssres."""
 
 import os
 

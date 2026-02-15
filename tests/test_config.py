@@ -3,7 +3,7 @@
 import pytest
 from pydantic import ValidationError
 
-from deblur_inr_ssrs.config import DeblurINRConfig, OptimizationStage
+from deblur_inr_ssres.config import DeblurINRConfig, OptimizationStage
 
 
 class TestOptimizationStage:

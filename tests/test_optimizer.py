@@ -3,8 +3,8 @@
 import pytest
 import torch
 
-from deblur_inr_ssrs.config import DeblurINRConfig, OptimizationStage
-from deblur_inr_ssrs.optimizer import DeblurINROptimizer
+from deblur_inr_ssres.config import DeblurINRConfig, OptimizationStage
+from deblur_inr_ssres.optimizer import DeblurINROptimizer
 
 
 def _make_config():
@@ -95,7 +95,7 @@ class TestDeblurINROptimizer:
         assert len(callback_calls) == config.num_iterations
 
     def test_deblur_image_convenience(self):
-        from deblur_inr_ssrs import deblur_image
+        from deblur_inr_ssres import deblur_image
 
         # 128x128 needed: default 5-level SkipNetwork requires spatial >= 2
         # at the deepest level (128 * 0.25 scale = 32, padded ~34, after 5

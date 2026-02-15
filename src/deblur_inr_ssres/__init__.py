@@ -1,6 +1,6 @@
 """Deblur-INR — blind deblurring via implicit neural representations.
 
-Works standalone or as an ssrs plugin (discovered automatically via entry points).
+Works standalone or as an ssres plugin (discovered automatically via entry points).
 """
 
 from .config import DeblurINRConfig, OptimizationStage
@@ -18,13 +18,13 @@ __all__ = [
 
 
 def register():
-    """Register Deblur-INR components as an ssrs plugin.
+    """Register Deblur-INR components as an ssres plugin.
 
-    Called automatically by ssrs plugin discovery via entry points.
-    Returns None if ssrs is not installed (standalone usage).
+    Called automatically by ssres plugin discovery via entry points.
+    Returns None if ssres is not installed (standalone usage).
     """
     try:
-        from ssrs.core.plugin_discovery import PluginContribution, PluginManifest
+        from ssres.core.plugin_discovery import PluginContribution, PluginManifest
     except ImportError:
         return None
 

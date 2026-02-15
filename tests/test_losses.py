@@ -2,7 +2,7 @@
 
 import torch
 
-from deblur_inr_ssrs.losses import _DeblurFFTLoss, _DeblurSSIMLoss, _DeblurTVLoss
+from deblur_inr_ssres.losses import _DeblurFFTLoss, _DeblurSSIMLoss, _DeblurTVLoss
 
 
 class TestDeblurSSIMLoss:

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 import torch
 import torch.nn.functional as F
-from ssrs_toolbox import FourierFeatureEncoding, SmoothnessLoss
+from ssres_toolbox import FourierFeatureEncoding, SmoothnessLoss
 from torch import Tensor
 from torch.optim import Adam
 from torch.optim.lr_scheduler import MultiStepLR

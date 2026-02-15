@@ -48,12 +48,12 @@ wheels = [
 ]
 
 [[package]]
-name = "deblur-inr-ssrs"
+name = "deblur-inr-ssres"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
-    { name = "ssrs-toolbox" },
+    { name = "ssres-toolbox" },
     { name = "torch" },
     { name = "tqdm" },
 ]
@@ -69,7 +69,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.0.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.2" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.3.0" },
-    { name = "ssrs-toolbox", editable = "../ssrs_toolbox" },
+    { name = "ssres-toolbox", editable = "../ssrs_toolbox" },
     { name = "torch", specifier = ">=2.7.0", index = "https://download.pytorch.org/whl/cu128" },
     { name = "tqdm", specifier = ">=4.66.2" },
 ]
@@ -511,7 +511,7 @@ wheels = [
 ]
 
 [[package]]
-name = "ssrs-toolbox"
+name = "ssres-toolbox"
 version = "0.1.0"
 source = { editable = "../ssrs_toolbox" }
 dependencies = [

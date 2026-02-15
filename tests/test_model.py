@@ -2,8 +2,8 @@
 
 import torch
 
-from deblur_inr_ssrs.config import DeblurINRConfig
-from deblur_inr_ssrs.model import DeblurINRModel
+from deblur_inr_ssres.config import DeblurINRConfig
+from deblur_inr_ssres.model import DeblurINRModel
 
 
 class TestDeblurINRModel:
