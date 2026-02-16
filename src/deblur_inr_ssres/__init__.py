@@ -24,20 +24,22 @@ def register():
     Returns None if ssres is not installed (standalone usage).
     """
     try:
-        from ssres.core.plugin_discovery import PluginContribution, PluginManifest
+        from core.plugin_discovery import PluginContribution, PluginManifest
     except ImportError:
         return None
 
     return PluginManifest(
         name="deblur_inr",
+        version="0.1.0",
+        description="Blind image deblurring via implicit neural representations",
         contributions=[
             PluginContribution(
-                kind="model",
+                category="model",
                 name="deblur_inr_model",
                 factory=lambda: DeblurINRModel,
             ),
             PluginContribution(
-                kind="optimizer",
+                category="optimizer",
                 name="deblur_inr_optimizer",
                 factory=lambda: DeblurINROptimizer,
             ),

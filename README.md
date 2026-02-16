@@ -20,6 +20,14 @@ cd deblur_inr_ssres
 uv sync --extra dev
 ```
 
+## What's included
+
+| Module | Key exports | Description |
+|--------|------------|-------------|
+| `model` | `DeblurINRModel` | SIREN kernel + skip network image reconstruction |
+| `optimizer` | `DeblurINROptimizer`, `deblur_image` | Test-time optimization with multi-scale coarse-to-fine |
+| `config` | `DeblurINRConfig`, `OptimizationStage` | Configuration with per-stage learning rates and scales |
+
 ## Usage
 
 ```python
